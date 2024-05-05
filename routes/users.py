@@ -19,19 +19,24 @@ def get_db_session():
     finally:
         db_session.close()
 
+#insert de usuarios 
 @router_user.post("/create_user",response_model=user_schema.UserCreate)
 async def create_user(user:user_schema.UserCreate, db:Session=Depends(get_db_session)):
     db_user=crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     return crud.create_user(db=db, user=user)
-    
 
+#obtencion de usuarios por el email
+@router_user.get("/get_user/{email}",response_model=user_schema.GetUser)
+async def get_user_email(email : str, db:Session=Depends(get_db_session)):
+    db_user = crud.get_user_by_email(db, email = email)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user
 
-#ejemplo
-#queryparamater
-#mostraar un limite de elementos correspondientes a fake items
-fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
-@router_user.get("/items/")
-async def read_item(skip: int = 0, limit: int = 10):
-    return { "items":fake_items_db[skip : skip + limit]}
+@router_user.get("/getAll_user/",response_model=list[user_schema.GetAll])
+async def getAll_user(skip:int=0, limit:int=2,db:Session=Depends(get_db_session)):
+    db_user=crud.get_all_user(db,skip=skip,limit=limit)
+    return db_user
+

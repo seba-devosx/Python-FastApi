@@ -19,10 +19,10 @@ class UserCreate(BaseModel):
     #passwd:str = Field(...,min_length=1,max_length=7,examples='hola123')
 
 class GetUser(UserCreate):
-    id:int
-    name:str
-    lastname:str
-    address:str
+    email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
+    
+class GetAll(UserCreate):
+    pass
 
     class config:
         orm_mode=True

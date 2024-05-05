@@ -9,4 +9,3 @@ app = FastAPI()
 #y se define el tag que utilizara
 app.include_router(router_user,prefix="/user",tags=["Users"])
 
-

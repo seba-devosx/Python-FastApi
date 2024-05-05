@@ -14,3 +14,7 @@ def create_user(db:Session,user:user_schema.UserCreate):
 
 def get_user_by_email(db: Session, email: str):
     return db.query(model_user.User).filter(model_user.User.email == email).first()
+
+def get_all_user(db:Session, skip: int=0, limit : int=2):
+    return db.query(model_user.User).offset(skip).limit(limit).all
+
