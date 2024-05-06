@@ -21,8 +21,8 @@ class UserCreate(BaseModel):
 class GetUser(UserCreate):
     email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
     
-class GetAll(UserCreate):
-    pass
+class GetallUser(UserCreate):
+    name:str
 
     class config:
         orm_mode=True
