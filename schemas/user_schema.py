@@ -22,7 +22,13 @@ class GetUser(UserCreate):
     email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
     
 class GetallUser(UserCreate):
-    name:str
+    id:int
 
     class config:
         orm_mode=True
+
+class Update_user(UserCreate):
+    email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
+
+class Delete_user(BaseModel):
+    email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')

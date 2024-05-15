@@ -18,3 +18,16 @@ def get_user_by_email(db: Session, email: str):
 def get_all_user(db:Session, skip: int=0, limit : int=10):
     return db.query(model_user.User).offset(skip).limit(limit).all()
 
+def update_user(db:Session,existing_user:model_user.User,user:user_schema.Update_user):
+    existing_user.email=user.email
+    existing_user.name=user.name
+    existing_user.lastname=user.lastname
+    existing_user.address=user.address
+    db.commit()
+    return db
+
+def delete_user(db:Session, email:str):
+    delete_user=db.query(model_user.User).filter(model_user.User.email==email).delete()
+    db.commit()
+    return db
+    
