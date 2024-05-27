@@ -52,7 +52,6 @@ async def modify_user_by_email(email:str ,user:user_schema.Update_user,db:Sessio
 @router_user.delete("/delete_user/{email}", response_model=user_schema.Delete_user)
 async def delete_user_by_email(email:str, db:Session=Depends(get_db_session)):
     db_user= crud.delete_user(db,email=email)
-    email_delete=email
     if db_user is None:
         raise HTTPException(status_code=404,detail="User not found")
     return user_schema.Delete_user(message='Este usuarios fue elimnado',email=email)
