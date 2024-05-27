@@ -31,4 +31,6 @@ class Update_user(UserCreate):
     email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
 
 class Delete_user(BaseModel):
-    email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
+    message: str
+    email: str 
+   

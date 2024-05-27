@@ -27,7 +27,7 @@ def update_user(db:Session,existing_user:model_user.User,user:user_schema.Update
     return db
 
 def delete_user(db:Session, email:str):
-    delete_user=db.query(model_user.User).filter(model_user.User.email==email).delete()
+    db.query(model_user.User).filter(model_user.User.email==email).delete()
     db.commit()
     return db
     
