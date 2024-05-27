@@ -16,7 +16,8 @@ class UserCreate(BaseModel):
     lastname:str = Field(...,min_length=1,max_length=50,example='aravena')
     email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
     address:str = Field(...,min_length=1,max_length=50,example='ave siempre viva')
-    #passwd:str = Field(...,min_length=1,max_length=7,examples='hola123')
+    paswrd:str = Field(...,min_length=1,max_length=60,example='pasword')
+    
 
 class GetUser(UserCreate):
     email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')

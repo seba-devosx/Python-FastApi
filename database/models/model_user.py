@@ -15,7 +15,8 @@ class User(Base):
     lastname=Column(String(50),nullable=False)
     email=Column(String(50),nullable=False)
     address=Column(String(50),nullable=False)
-   #passwd=Column(String(7),nullable=False)
+    paswrd=Column(String(60),nullable=False)
+
 
 #direcciones= relationship('Direccion',back_populates='Users')
 
