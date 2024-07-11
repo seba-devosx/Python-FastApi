@@ -16,4 +16,10 @@ sessionLocal= sessionmaker(autocommit=False,autoflush=False,bind=engine)
 #permite por hacer uso ddel orm y poder crear cada uno de los modelos
 Base = declarative_base()
 
-
+#funcion para crea la session 
+def get_db_session():
+    db_session=sessionLocal()
+    try:
+        yield db_session
+    finally:
+        db_session.close()
