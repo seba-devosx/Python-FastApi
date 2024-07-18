@@ -27,8 +27,6 @@ class GetUser(UserCreate):
 class GetallUser(UserCreate):
     id:int
 
-    class config:
-        orm_mode=True
 
 class Update_user(UserCreate):
     email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
@@ -36,4 +34,7 @@ class Update_user(UserCreate):
 class Delete_user(BaseModel):
     message: str
     email: str 
+    
+class config:
+        orm_mode=True
 

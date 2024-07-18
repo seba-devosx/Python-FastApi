@@ -16,7 +16,7 @@ model_user.Base.metadata.create_all(bind=engine)
 #y se define el tag que utilizara
 
 app.include_router(router_auth)
-app.include_router(router_user,prefix="/user",tags=["Users"])
+app.include_router(router_user,prefix="/v1/user",tags=["Users"])
 
 #implementacion de cors y middleware
 
