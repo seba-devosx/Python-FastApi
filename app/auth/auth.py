@@ -10,9 +10,12 @@ from fastapi import Depends, HTTPException, status
 from jwt.exceptions import InvalidTokenError
 from sqlalchemy.orm import Session
 from app.database.database_config import get_db_session
+from dotenv import load_dotenv
+import os
 
+load_dotenv('app/helpers/.env')
 
-SECRET_KEY = "82fcccd019fcd8092df06577b328737157932cf9c9cf5d265a0b74f77980d206"
+SECRET_KEY = os.getenv('SECRET')
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
