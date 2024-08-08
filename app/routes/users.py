@@ -8,7 +8,7 @@ from app.database.utils import crud
 router_user=APIRouter()
 
 #insert de usuarios
-@router_user.post("/create_user",response_model=UserCreate)
+@router_user.post("/create_user",response_model=UserCreate,status_code=status.HTTP_201_CREATED)
 async def create_user(user:UserCreate, db:Session=Depends(get_db_session)):
     db_user=crud.get_user_by_email(db, email=user.email)
     if db_user:
@@ -16,19 +16,19 @@ async def create_user(user:UserCreate, db:Session=Depends(get_db_session)):
     return crud.create_user(db=db, user=user)
 
 #obtencion de usuarios por el email
-@router_user.get("/get_user/{email}",response_model=GetUser)
+@router_user.get("/get_user/{email}",response_model=GetUser, status_code=status.HTTP_200_OK)
 async def get_user_email(email : str, db:Session=Depends(get_db_session)):
     db_user = crud.get_user_by_email(db, email = email)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
 
-@router_user.get("/getAll_user", response_model=list[GetallUser])
+@router_user.get("/getAll_user", response_model=list[GetallUser],status_code=status.HTTP_200_OK)
 async def getAll_user(skip:int=0, limit:int=10,db:Session=Depends(get_db_session)):
     db_user=crud.get_all_user(db,skip=skip,limit=limit)
     return db_user
 
-@router_user.put("/modify_user/{email}",response_model=Update_user)
+@router_user.put("/modify_user/{email}",response_model=Update_user,status_code=status.HTTP_200_OK)
 async def modify_user_by_email(email:str ,user:Update_user,db:Session=Depends(get_db_session)):
     existing_user=crud.get_user_by_email(db=db,email=email)
     if existing_user is None:
@@ -36,7 +36,7 @@ async def modify_user_by_email(email:str ,user:Update_user,db:Session=Depends(ge
     crud.update_user(db,existing_user,user)
     return existing_user
 
-@router_user.delete("/delete_user/{email}", response_model=Delete_user)
+@router_user.delete("/delete_user/{email}", response_model=Delete_user,status_code=status.HTTP_200_OK)
 async def delete_user_by_email(email:str, db:Session=Depends(get_db_session)):
     db_user= crud.delete_user(db,email=email)
     if db_user is None:

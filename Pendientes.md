@@ -1,0 +1,3 @@
+- [ ] Metodo para poder crear los post
+- [ ] Metodo para poder hacer las recciones
+- [ ] Ruta de acceso a las rutas de administradores
