@@ -8,7 +8,7 @@ class User(BaseModel):
     email:str 
     address:str
     paswrd:str 
-    disabled:bool
+    #disabled:bool
 
 class auth_login(BaseModel):
     email:str 

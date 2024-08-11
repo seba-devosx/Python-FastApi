@@ -17,7 +17,7 @@ class UserCreate(BaseModel):
     email:str =  Field(...,min_length=1,max_length=50,example='sebastianigna@gmail.com')
     address:str = Field(...,min_length=1,max_length=50,example='ave siempre viva')
     paswrd:str = Field(...,min_length=1,max_length=60,example='pasword')
-    disabled:bool=  Field(...,example='1')
+    #disabled:bool=  Field(...,example='1')
 
     
 
