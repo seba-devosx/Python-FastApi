@@ -5,7 +5,12 @@ from app.routes.auth import router_auth
 from fastapi.middleware.cors import CORSMiddleware
 from app.database.database_config import engine
 from app.database.models import model_user
+
 app = FastAPI()
+
+@app.get("/")
+async def read_main():
+    return {"message": "Hello World"}
 
 
 #crecion de tablas en las base de datos
@@ -34,3 +39,4 @@ app.add_middleware(
     allow_methods=["*"],#permite el uso de todos los metodos
     allow_headers=["*"],#permite todos los encabezados
 )
+
